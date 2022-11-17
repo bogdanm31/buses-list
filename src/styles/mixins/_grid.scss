@@ -1,0 +1,6 @@
+@function breakpoint_infix($breakpoint) {
+  @if ($breakpoint == '') {
+    @return $breakpoint;
+  }
+  @return '-' + $breakpoint;
+}

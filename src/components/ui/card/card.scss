@@ -1,0 +1,7 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins/init';
+
+.card {
+  @include gen_breakpoint_spaces(padding);
+  background-color: $colorWhite;
+}

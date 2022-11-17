@@ -1,0 +1,78 @@
+.fade-enter-active {
+  animation: {
+    name: fade;
+    duration: 0.5s;
+  }
+}
+
+.fade-leave-active {
+  animation: {
+    name: fade;
+    direction: reverse;
+    duration: 0.25s;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-enter-active {
+  animation: {
+    name: slide;
+    duration: 1s;
+  }
+}
+
+.slide-leave-active {
+  animation: {
+    name: slide;
+    direction: reverse;
+    duration: 0.25s;
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateY(-125%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.slide-negative-enter-active {
+  animation: {
+    name: slide-negative;
+    duration: 1s;
+  }
+}
+
+.slide-negative-leave-active {
+  animation: {
+    name: slide-negative;
+    direction: reverse;
+    duration: 0.25s;
+  }
+}
+
+@keyframes slide-negative {
+  from {
+    opacity: 0;
+    transform: translateY(125%);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

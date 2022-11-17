@@ -1,0 +1,37 @@
+@each $colorName, $colorValue in $colors {
+  .text-#{$colorName} {
+    color: $colorValue;
+  }
+}
+
+h1 {
+  font-size: font_size(h1);
+}
+
+h2 {
+  font-size: font_size(h2);
+}
+
+@each $breakpoint in $breakpoints {
+  $infix: breakpoint_infix($breakpoint);
+
+  @include media_query($breakpoint) {
+    @each $name, $size in $fonts {
+      .#{$name}#{$infix} {
+        font-size: #{$size};
+      }
+    }
+  }
+}
+
+.rb {
+  font-weight: 400;
+}
+
+.sb {
+  font-weight: 500;
+}
+
+.fb {
+  font-weight: 700;
+}

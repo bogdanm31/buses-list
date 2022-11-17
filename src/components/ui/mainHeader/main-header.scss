@@ -1,0 +1,24 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins/init";
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: #{$headerHeight};
+  padding: {
+    left: #{spacer(1)};
+    right: #{spacer(1)};
+  }
+
+  @include media_query('lg') {
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    padding: {
+      left: #{spacer(2_5)};
+      right: #{spacer(2_5)};
+    }
+  }
+}

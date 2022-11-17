@@ -1,0 +1,22 @@
+@function spacer($index) {
+  @return map-get($spacers, $index);
+}
+
+@mixin gen_breakpoint_spaces($props, $multiply: 1) {
+  $list: $props;
+  @if(type-of($list) == map) {
+    $list: map-values($list);
+  }
+
+  @each $breakpoint, $size in $colGaps {
+    @include media_query($breakpoint) {
+      @if (type-of($list) == list) {
+        @each $p in $list {
+          #{$p}: #{$size * $multiply};
+        }
+      } @else {
+        #{$list}: #{$size * $multiply};
+      }
+    }
+  }
+}

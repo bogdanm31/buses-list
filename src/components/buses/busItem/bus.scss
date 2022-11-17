@@ -1,0 +1,24 @@
+@import '../../../styles/variables';
+@import "../../../styles/mixins/init";
+
+.bus-item {
+  position: relative;
+  @include gen_breakpoint_spaces(margin-bottom, .5);
+
+  &::before {
+    content: '';
+    border-radius: 0 .5rem .5rem 0;
+    position: absolute;
+    left: 0;
+    top: .5rem;
+    bottom: .5rem;
+    width: .25rem;
+    background-color: #{$colorSuccess};
+  }
+
+  &.delayed {
+    &::before {
+      background-color: #{$colorDanger};
+    }
+  }
+}

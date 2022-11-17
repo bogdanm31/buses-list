@@ -1,0 +1,84 @@
+// breakpoints
+$breakpointsMapping: (
+  '': 0,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1366
+);
+$breakpoints: map-keys($breakpointsMapping);
+
+// sizes
+$headerHeight: 8rem;
+$navWidth: 15rem;
+$footerHeight: 4rem;
+
+// colors
+$colorPrimary: #157ad5;
+$colorPrimaryDark: darken($colorPrimary, 12.5%);
+$colorPrimaryDarker: darken($colorPrimary, 25%);
+$colorSecondary: #222;
+$colorSuccess: #00ad09;
+$colorWarning: #e3a730;
+$colorDanger: #ff0000;
+$colorGray: #8a8a8a;
+$colorGrayLight: #909090;
+$colorGrayLighter: #d4d9dE;
+$colorWhite: #fff;
+$colorBlack: #000;
+
+$colors: (
+  primary: $colorPrimary,
+  primary-dark: $colorPrimary,
+  secondary: $colorSecondary,
+  success: $colorSuccess,
+  warning: $colorWarning,
+  danger: $colorDanger,
+  gray-light: $colorGrayLight,
+  gray-lighter: $colorGrayLighter,
+);
+
+// shadows
+$shadowNav: -0.25rem 0 .5rem $colorGrayLighter;
+
+// fonts
+$fonts: (
+  biggest: 3.25rem,
+  bigger: 3rem,
+  big: 2.5rem,
+  h1: 1.5rem,
+  h2: 1.25rem,
+  subtitle: 1.125rem,
+  body1: 1rem,
+  body2: .875rem,
+  caption: .75rem,
+  small: .5rem,
+  font-0: 0
+);
+
+// texts
+$alignments: (left, right, center, justify);
+
+// spacing
+$spacers: (
+  0: 0,
+  0_25: .25rem,
+  0_5: .5rem,
+  0_75: .75rem,
+  1: 1rem,
+  1_25: 1.25rem,
+  1_5: 1.5rem,
+  1_75: 1.5rem,
+  2: 2rem,
+  2_5: 2.5rem,
+  5: 5rem,
+);
+
+// grid
+$columns: 12;
+$colGaps: (
+  xs: .5rem,
+  md: .75rem,
+  lg: 1rem
+);

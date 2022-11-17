@@ -1,0 +1,10 @@
+// grid
+%grid-column {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding: {
+    left: 1rem;
+    right: 1rem;
+  }
+}

@@ -1,0 +1,37 @@
+@each $prefix,
+$prop in (m: margin, p: padding) {
+
+  @each $breakpoint,
+  $size in $breakpoints {
+    $infix: breakpoint_infix($breakpoint);
+
+    @include media_query($breakpoint) {
+      @each $index,
+      $size in $spacers {
+        .#{$prefix}#{$infix}-#{$index} {
+          #{$prop}: #{$size};
+        }
+
+        .#{$prefix}l#{$infix}-#{$index},
+        .#{$prefix}x#{$infix}-#{$index} {
+          #{$prop}-left: #{$size};
+        }
+
+        .#{$prefix}r#{$infix}-#{$index},
+        .#{$prefix}x#{$infix}-#{$index} {
+          #{$prop}-right: #{$size};
+        }
+
+        .#{$prefix}t#{$infix}-#{$index},
+        .#{$prefix}y#{$infix}-#{$index} {
+          #{$prop}-top: #{$size};
+        }
+
+        .#{$prefix}b#{$infix}-#{$index},
+        .#{$prefix}y#{$infix}-#{$index} {
+          #{$prop}-bottom: #{$size};
+        }
+      }
+    }
+  }
+}

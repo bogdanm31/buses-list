@@ -1,0 +1,46 @@
+.row {
+  @include gen_breakpoint_spaces((margin-left, margin-right), -1);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+@each $breakpoint, $size in $breakpoints {
+  $infix: breakpoint_infix($breakpoint);
+
+  @for $i from 1 through $columns {
+    .col#{$infix}-#{$i} {
+      @extend %grid-column;
+    }
+  }
+
+  .col#{$infix},
+  .col#{$infix}-auto {
+    @extend %grid-column;
+  }
+
+  @include media_query($breakpoint) {
+    .col#{$infix} {
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+    }
+
+    .col#{$infix}-auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: none;
+    }
+
+    @for $i from 1 through $columns {
+      .col#{$infix}-#{$i} {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+      }
+    }
+  }
+}

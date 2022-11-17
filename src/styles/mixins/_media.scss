@@ -1,0 +1,10 @@
+@mixin media_query ($breakpoint: 'xs') {
+  $size: map-get($breakpointsMapping, $breakpoint);
+  @if ($breakpoint != 'xs') {
+    @media (min-width: #{$size + 'px'}) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

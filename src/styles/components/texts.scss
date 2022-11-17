@@ -1,0 +1,11 @@
+@each $breakpoint in $breakpoints {
+  $infix: breakpoint_infix($breakpoint);
+
+  @include media_query($breakpoint) {
+    @each $alignment in $alignments {
+      .text#{$infix}-#{$alignment} {
+        text-align: #{$alignment};
+      }
+    }
+  }
+}
