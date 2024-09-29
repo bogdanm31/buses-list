@@ -1,5 +1,5 @@
 import './main-header.scss';
-import logo from '../../../img/logo.svg';
+
 import useTime from "../../../hooks/use-time";
 
 const MainHeader = ({ timestamp }: { timestamp: number }) => {
@@ -12,7 +12,7 @@ const MainHeader = ({ timestamp }: { timestamp: number }) => {
         className="logo"
         data-testid="logo"
       >
-        <img src={logo} alt="" />
+        {/* <img src={logo} alt="" /> */}
       </div>
       <div
         className="clock biggest-lg fb"

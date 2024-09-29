@@ -1,25 +1,34 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import useHttp from "../../../hooks/use-http";
-import Bus from "../busItem/Bus";
-import BusObj from "../../../interfaces/Bus";
-import StationObj from "../../../interfaces/Station";
-import BusArrival from "../../../interfaces/BusArrival";
 import useTime from "../../../hooks/use-time";
 
+import { BusArrival, BusDetails } from "../../../types/bus";
+import { Station } from "../../../types/station";
+
+import Bus from "../busItem/Bus";
+
+const BusesQueryDocument = `
+query buses($id: String!) {
+  stop(id: "HSL:1201110") {
+    name stoptimesWithoutPatterns {
+      trip {
+        id
+        route {
+          shortName
+        }
+      }
+      realtimeArrival
+      arrivalDelay
+      serviceDay
+    }
+  }
+}`;
+
 const Buses = ({ timestamp }: { timestamp: number }) => {
-  const [buses, setBuses]: [
-    Array<BusObj>,
-    Dispatch<SetStateAction<any>>
-  ] = useState([]);
-  const [station, setStation]: [
-    StationObj,
-    Dispatch<SetStateAction<any>>
-  ] = useState({ id: undefined, name: undefined });
-  const [busLeft, setBusLeft]: [
-    boolean,
-    Dispatch<SetStateAction<boolean>>
-  ] = useState(true);
+  const [buses, setBuses] = useState<BusDetails[]>([]);
+  const [station, setStation] = useState<Station>({ id: undefined, name: undefined });
+  const [busLeft, setBusLeft] = useState<boolean>(true);
 
   const { httpRequest: fetchBuses, isLoading, error } = useHttp();
   const [midnightTime] = useState(useTime().midnightTime());
@@ -55,13 +64,7 @@ const Buses = ({ timestamp }: { timestamp: number }) => {
       );
     };
 
-    fetchBuses(
-      {
-        query:
-          '{ stop(id: "HSL:1201110") { name stoptimesWithoutPatterns { trip { id route { shortName } } realtimeArrival arrivalDelay serviceDay } } }'
-      },
-      busListTransformer
-    );
+    fetchBuses({ query: BusesQueryDocument }, busListTransformer);
 
     setBusLeft(false);
   }, [isLoading, buses, busLeft, setBusLeft, fetchBuses]);

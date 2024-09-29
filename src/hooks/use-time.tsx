@@ -11,7 +11,7 @@ const useTime = () => {
     return Math.floor((cts - mts) / 60) * 60;
   }, []);
 
-  const toUnits = (num: number, excludeUnits: Array<string> = ["s"]) => {
+  const toUnits = useCallback((num: number, excludeUnits: string[] = ["s"]) => {
     let index = 0;
     const data = timeUnits.map((item) => ({
       ...item,
@@ -27,7 +27,7 @@ const useTime = () => {
     }
 
     return data.reverse().filter((unit) => !excludeUnits.includes(unit.symbol));
-  };
+  }, []);
 
   const toClockString = useCallback((num: number) => {
     const data = toUnits(num);
@@ -35,7 +35,7 @@ const useTime = () => {
     return data
       .map((unit) => (unit.value < 10 ? "0" : "") + unit.value)
       .join(":");
-  }, []);
+  }, [toUnits]);
 
   const toTimeString = useCallback((num: number) => {
     const data = toUnits(num);
@@ -49,7 +49,7 @@ const useTime = () => {
           }`
       )
       .join(" ");
-  }, []);
+  }, [toUnits]);
 
   return {
     midnightTime,

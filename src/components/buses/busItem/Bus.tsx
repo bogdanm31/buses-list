@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
 import "./bus.scss";
-import BusObj from "../../../interfaces/Bus";
 import Card from "../../ui/card/Card";
 
 import busImg from "../../../img/bus.svg";
 import useTime from "../../../hooks/use-time";
+import { BusDetails } from "../../../types/bus";
 
 const Bus = ({
   bus: { name, arrival, delay, serviceDay },
@@ -13,7 +13,7 @@ const Bus = ({
   timestamp,
   onLeave
 }: {
-  bus: BusObj;
+  bus: BusDetails;
   timestamp: number;
   midnightTime: number;
   onLeave: Function;
