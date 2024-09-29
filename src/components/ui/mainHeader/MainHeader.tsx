@@ -1,10 +1,13 @@
 import './main-header.scss';
 
-import useTime from "../../../hooks/use-time";
+import { useTimestampContext } from '../../../contexts/TimestampContext';
 
-const MainHeader = ({ timestamp }: { timestamp: number }) => {
-  const { toClockString } = useTime();
-  const time = toClockString(timestamp);
+const MainHeader = () => {
+  const {
+    timePassedFromMidnight,
+    toClockString
+  } = useTimestampContext();
+  const time = toClockString(timePassedFromMidnight);
   
   return (
     <header className="app-header">

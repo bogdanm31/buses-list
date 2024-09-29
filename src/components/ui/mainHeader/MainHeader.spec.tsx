@@ -4,7 +4,7 @@ import MainHeader from './MainHeader';
 const hour = 14,
     minute = 30,
     timestamp = hour * 3600 + minute * 60;
-const renderItem = () => render(<MainHeader timestamp={timestamp}/>);
+const renderItem = () => render(<MainHeader />);
 
 describe('MainHeader component', () => {
   test('renders logo', () => {

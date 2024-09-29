@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import Buses from './Buses';
+import Buses from './index';
 
 const mockData = {
   data: {
@@ -78,11 +78,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-const hour = 14,
-  minute = 30,
-  timestamp = hour * 3600 + minute * 60;
-
-const renderList = () => (render(<Buses timestamp={timestamp} />));
+const renderList = () => (render(<Buses />));
 
 describe('Buses.tsx', () => {
   afterAll(() => {

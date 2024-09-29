@@ -4,8 +4,9 @@ import "./bus.scss";
 import Card from "../../ui/card/Card";
 
 import busImg from "../../../img/bus.svg";
-import useTime from "../../../hooks/use-time";
+
 import { BusDetails } from "../../../types/bus";
+import { useTimestampContext } from "../../../contexts/TimestampContext";
 
 const Bus = ({
   bus: { name, arrival, delay, serviceDay },
@@ -18,7 +19,7 @@ const Bus = ({
   midnightTime: number;
   onLeave: Function;
 }) => {
-  const { toTimeString, toClockString } = useTime();
+  const { toTimeString, toClockString } = useTimestampContext();
   const remaining = arrival + serviceDay - (timestamp + midnightTime);
 
   useEffect(() => {
