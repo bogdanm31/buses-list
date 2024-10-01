@@ -1,12 +1,11 @@
 import './main-header.scss';
 
 import { useTimestampContext } from '../../../contexts/TimestampContext';
+import { useTimestamp } from '../../../hooks/useTimestamp';
 
 const MainHeader = () => {
-  const {
-    timePassedFromMidnight,
-    toClockString
-  } = useTimestampContext();
+  const { toClockString } = useTimestampContext();
+  const { timePassedFromMidnight } = useTimestamp();
   const time = toClockString(timePassedFromMidnight);
   
   return (

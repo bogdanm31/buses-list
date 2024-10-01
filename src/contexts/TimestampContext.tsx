@@ -1,10 +1,9 @@
-import { createContext, ReactNode, useContext } from "react";
+import { createContext, ReactNode, useContext, useMemo } from "react";
 import { timeUnits } from "../constants/time";
 import { TimeUnit } from "../types/time";
 
 export type TimestampContextType = {
   midnightTime: number;
-  timePassedFromMidnight: number;
   toClockString: (num: number) => string;
   toTimeString: (num: number) => string;
   toUnits: (num: number, excludeUnits: string[]) => TimeUnit[];
@@ -13,17 +12,13 @@ export type TimestampContextType = {
 export const TimestampContext = createContext({} as TimestampContextType);
 
 type Props = {
-  children: ReactNode,
-  currentTime: number
+  children: ReactNode
 };
 
-export const TimestampContextProvider = ({ children, currentTime }: Props) => {
-  const midnightTime = () => new Date(new Date().setHours(0, 0, 0, 0)).getTime() / 1000;
-
-  const timePassedFromMidnight = () => {
-    const mts = midnightTime();
-    return Math.floor((currentTime - mts) / 60) * 60;
-  };
+export const TimestampContextProvider = ({ children }: Props) => {
+  const midnightTime = useMemo(() => {
+    return new Date(new Date().setHours(0, 0, 0, 0)).getTime() / 1000;
+  }, []);
 
   const toUnits = (num: number, excludeUnits: string[] = ["s"]) => {
     let index = 0;
@@ -66,8 +61,7 @@ export const TimestampContextProvider = ({ children, currentTime }: Props) => {
   }
 
   const value = {
-    midnightTime: midnightTime(),
-    timePassedFromMidnight: timePassedFromMidnight(),
+    midnightTime,
     toClockString,
     toTimeString,
     toUnits

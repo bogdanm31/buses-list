@@ -8,17 +8,19 @@ import busImg from "../../../img/bus.svg";
 import { BusDetails } from "../../../types/bus";
 import { useTimestampContext } from "../../../contexts/TimestampContext";
 
+type Props = {
+  bus: BusDetails;
+  timestamp: number;
+  midnightTime: number;
+  onLeave: Function;
+};
+
 const Bus = ({
   bus: { name, arrival, delay, serviceDay },
   midnightTime,
   timestamp,
   onLeave
-}: {
-  bus: BusDetails;
-  timestamp: number;
-  midnightTime: number;
-  onLeave: Function;
-}) => {
+}: Props) => {
   const { toTimeString, toClockString } = useTimestampContext();
   const remaining = arrival + serviceDay - (timestamp + midnightTime);
 

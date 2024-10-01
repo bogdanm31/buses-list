@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useGetBuses } from "../../hooks/useGetBuses";
+import { useTimestamp } from "../../hooks/useTimestamp";
 import { useTimestampContext } from "../../contexts/TimestampContext";
 
 import { BusDetails } from "../../types/bus";
@@ -9,7 +10,8 @@ import { Station } from "../../types/station";
 import Bus from "../../components/buses/busItem/Bus";
 
 const Buses = () => {
-  const { midnightTime, timePassedFromMidnight } = useTimestampContext();
+  const { midnightTime } = useTimestampContext();
+  const { timePassedFromMidnight } = useTimestamp();
 
   const [buses, setBuses] = useState<BusDetails[]>([]);
   const [station, setStation] = useState<Station>({ id: undefined, name: undefined });
